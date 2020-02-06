@@ -12,9 +12,11 @@ COPY conf ${SRC_DIR}
 RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
 
 # update yum repo
-    && yum install -y yum-utils deltarpm epel-release \
+    && yum install -y curl yum-utils deltarpm epel-release \
     && rpm --import https://mirror.go-repo.io/centos/RPM-GPG-KEY-GO-REPO \
     && yum-config-manager --add-repo https://mirror.go-repo.io/centos/go-repo.repo \
+    && set -o pipefail && curl -sL https://rpm.nodesource.com/setup_12.x | bash - \
+    && set -o pipefail && curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo \
     && yum repolist \
 
 # install compile dependency
@@ -103,8 +105,6 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     zlib-devel \
 
 # install packaging tools
-    && set -o pipefail && curl -sL https://rpm.nodesource.com/setup_12.x | bash - \
-    && set -o pipefail && curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo \
     && yum install -y golang nodejs yarn \
 
     && yum clean all \

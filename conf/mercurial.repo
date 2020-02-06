@@ -1,5 +1,5 @@
-[mercurial.selenic.com]
-name=mercurial.selenic.com
+[mercurial]
+name=mercurial
 baseurl=https://www.mercurial-scm.org/release/centos$releasever
 enabled=1
 # Temporary until we get a serious signing scheme in place,
