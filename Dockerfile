@@ -105,7 +105,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     zlib-devel \
 
 # install packaging tools
-    && yum install -y golang nodejs \
+    && yum install -y golang nodejs yarn \
 
 # clear cache
     && yum clean all \
@@ -119,5 +119,4 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && rm -rf /usr/local/share/doc/* \
     && rm -rf /usr/share/doc/* \
     && rm -rf /usr/share/man/* \
-    && mkdir -p ${LOG_DIR} \
     && history -c && history -w
