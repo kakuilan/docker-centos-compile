@@ -103,7 +103,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     zlib-devel \
 
 # install packaging tools
-    && set -o pipefail && curl -sL https://rpm.nodesource.com/setup_12.x | -E bash - \
+    && set -o pipefail && curl -sL https://rpm.nodesource.com/setup_12.x | bash - \
     && set -o pipefail && curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo \
     && yum install -y golang nodejs yarn \
 
