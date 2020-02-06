@@ -107,7 +107,6 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
 # install packaging tools
     && yum install -y golang nodejs yarn \
 
-    && yum clean all \
     && rm -rf ${SRC_DIR}/* \
     && rm -rf /run/log/* \
     && rm -rf /tmp/* \
