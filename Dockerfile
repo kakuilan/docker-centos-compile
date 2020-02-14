@@ -39,6 +39,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     patch \
     subversion \
     telnet \
+    tcpdump \
     tree \
     tzdata \
     unzip \
@@ -46,20 +47,15 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     which \
 
 # install development libs dependency
-    GeoIP \
     GeoIP-devel \
     ImageMagick-devel \
     bison-devel \
     bzip2-devel \
-    cronie \
-    crontabs \
     cyrus-sasl-devel \
     expat-devel \
     freetype-devel \
     gd-devel \
     gdbm-devel \
-    geoipupdate \
-    geoipupdate-cron \
     gettext-devel \
     glib2-devel \
     glibc-devel \
@@ -72,6 +68,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     libargon2-devel \
     libc-client-devel \
     libcurl-devel \
+    libevent-devel \
     libgomp \
     libicu-devel \
     libidn-devel \
@@ -79,8 +76,10 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     libjpeg-turbo \
     libjpeg-turbo-devel \
     libmcrypt-devel \
+    libmemcached-devel \
     libpng-devel \
     libpqxx-devel \
+    librabbitmq-devel \
     libsodium-devel \
     libtidy-devel \
     libtool-ltdl-devel \
@@ -89,7 +88,6 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     libxml2-devel \
     libxslt-devel \
     libzip-devel \
-    logrotate \
     mariadb-devel \
     mhash-devel \
     net-snmp-devel \
