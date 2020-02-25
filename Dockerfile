@@ -53,6 +53,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     bzip2-devel \
     cyrus-sasl-devel \
     expat-devel \
+    file-devel \
     freetype-devel \
     gd-devel \
     gdbm-devel \
