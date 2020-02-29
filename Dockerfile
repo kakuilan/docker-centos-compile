@@ -7,6 +7,14 @@ ARG SRC_DIR=/usr/local/src
 ARG WWW_USER=www
 ARG WWW_DIR=/var/www
 
+# nginx相关包
+ARG NGBUILD_VER=0.11.8
+ARG ZLIB_VER=1.2.11
+ARG PCRE_VER=8.44
+ARG OPENSSL_VER=1.1.1d
+ARG OPENRESTY_VER=1.15.8.2
+ARG LUAROCKS_VERSION=3.3.1
+
 # php相关包
 ARG RE2C_VER=1.3
 ARG LIBICONV_VER=1.16
@@ -26,7 +34,6 @@ ARG PHP_REDIS_VER=5.1.1
 ARG PHP_SWOOLE_VER=4.4.16
 ARG PHP_XDEBUG_VER=2.9.2
 ARG PHP_XHPROF_VER=2.1.3
-
 
 # copy files
 COPY conf ${SRC_DIR}
@@ -137,6 +144,14 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && mkdir -p ${WWW_DIR} \
     && useradd -M -s /sbin/nologin ${WWW_USER} \
     && cd ${SRC_DIR} \
+
+# download nginx soft source pack
+    && wget https://github.com/cubicdaiya/nginx-build/releases/download/v${NGBUILD_VER}/nginx-build-linux-amd64-${NGBUILD_VER}.tar.gz -O nginx-build-linux-amd64-${NGBUILD_VER}.tar.gz \
+    && wget https://zlib.net/fossils/zlib-${ZLIB_VER}.tar.gz -O zlib-${ZLIB_VER}.tar.gz \
+    && wget https://ftp.pcre.org/pub/pcre/pcre-${PCRE_VER}.tar.gz -O pcre-${PCRE_VER}.tar.gz \
+    && wget https://www.openssl.org/source/openssl-${OPENSSL_VER}.tar.gz -O openssl-${OPENSSL_VER}.tar.gz \
+    && wget https://openresty.org/download/openresty-${OPENRESTY_VER}.tar.gz -O openresty-${OPENRESTY_VER}.tar.gz \
+    && curl -fSL https://luarocks.github.io/luarocks/releases/luarocks-${LUAROCKS_VERSION}.tar.gz -o luarocks-${LUAROCKS_VERSION}.tar.gz \
 
 # download php soft source pack
     && wget https://github.com/skvadrik/re2c/releases/download/${RE2C_VER}/re2c-${RE2C_VER}.tar.xz -O re2c-${RE2C_VER}.tar.xz \
