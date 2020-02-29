@@ -2,8 +2,31 @@ FROM centos:centos7
 
 MAINTAINER kakuilan kakuilan@163.com
 
-ENV TZ=Asia/Shanghai \
-    SRC_DIR=/usr/local/src
+ARG TZ=Asia/Shanghai
+ARG SRC_DIR=/usr/local/src
+ARG WWW_USER=www
+ARG WWW_DIR=/var/www
+
+# php相关包
+ARG RE2C_VER=1.3
+ARG LIBICONV_VER=1.16
+ARG LIBZIP_VER=1.6.1
+ARG PHP_VER=7.4.3
+ARG PHP_AMQP_VER=1.9.4
+ARG PHP_GRPC_VER=1.27.0
+ARG PHP_IMAGICK_VER=3.4.4
+ARG PHP_INOTIFY_VER=2.0.0
+ARG PHP_MCRYPT_VER=1.0.3
+ARG PHP_MEMCACHED_VER=3.1.5
+ARG PHP_MONGODB_VER=1.7.2
+ARG PHP_MSGPACK_VER=2.0.3
+ARG PHP_NSQ_VER=3.5.0
+ARG PHP_PROTOBUF_VER=3.11.4
+ARG PHP_REDIS_VER=5.1.1
+ARG PHP_SWOOLE_VER=4.4.16
+ARG PHP_XDEBUG_VER=2.9.2
+ARG PHP_XHPROF_VER=2.1.3
+
 
 # copy files
 COPY conf ${SRC_DIR}
@@ -72,6 +95,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     libargon2-devel \
     libc-client-devel \
     libcurl-devel \
+    libevent-devel \
     libgomp \
     libicu-devel \
     libidn-devel \
@@ -79,8 +103,10 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     libjpeg-turbo \
     libjpeg-turbo-devel \
     libmcrypt-devel \
+    libmemcached-devel \
     libpng-devel \
     libpqxx-devel \
+    librabbitmq-devel \
     libsodium-devel \
     libtidy-devel \
     libtool-ltdl-devel \
@@ -106,6 +132,31 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
 
 # install packaging tools
     && yum install -y golang nodejs yarn \
+
+# make www dir add user
+    && mkdir -p ${WWW_DIR} \
+    && useradd -M -s /sbin/nologin ${WWW_USER} \
+    && cd ${SRC_DIR} \
+
+# download php soft source pack
+    && wget https://github.com/skvadrik/re2c/releases/download/${RE2C_VER}/re2c-${RE2C_VER}.tar.xz -O re2c-${RE2C_VER}.tar.xz \
+    && wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-${LIBICONV_VER}.tar.gz \
+    && wget https://libzip.org/download/libzip-${LIBZIP_VER}.tar.gz \
+    && wget http://hk1.php.net/get/php-${PHP_VER}.tar.gz/from/this/mirror -O php-${PHP_VER}.tar.gz \
+    && wget http://pecl.php.net/get/amqp-${PHP_AMQP_VER}.tgz \
+    && wget http://pecl.php.net/get/grpc-${PHP_GRPC_VER}.tgz \
+    && wget https://pecl.php.net/get/imagick-${PHP_IMAGICK_VER}.tgz \
+    && wget https://pecl.php.net/get/inotify-${PHP_INOTIFY_VER}.tgz \
+    && wget https://pecl.php.net/get/mcrypt-${PHP_MCRYPT_VER}.tgz \
+    && wget https://pecl.php.net/get/memcached-${PHP_MEMCACHED_VER}.tgz \
+    && wget https://pecl.php.net/get/mongodb-${PHP_MONGODB_VER}.tgz \
+    && wget http://pecl.php.net/get/msgpack-${PHP_MSGPACK_VER}.tgz \
+    && wget https://pecl.php.net/get/nsq-${PHP_NSQ_VER}.tgz \
+    && wget http://pecl.php.net/get/protobuf-${PHP_PROTOBUF_VER}.tgz \
+    && wget https://pecl.php.net/get/redis-${PHP_REDIS_VER}.tgz \
+    && wget https://pecl.php.net/get/swoole-${PHP_SWOOLE_VER}.tgz \
+    && wget http://pecl.php.net/get/xdebug-${PHP_XDEBUG_VER}.tgz \
+    && wget https://github.com/longxinH/xhprof/archive/v${PHP_XHPROF_VER}.tar.gz -O xhprof.${PHP_XHPROF_VER}.tar.gz \
 
 # clear cache
     && yum clean all \
