@@ -171,7 +171,6 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
 
 # clear cache
     && yum clean all \
-    && rm -rf ${SRC_DIR}/* \
     && rm -rf /run/log/* \
     && rm -rf /tmp/* \
     && rm -rf /var/cache/yum/* \
