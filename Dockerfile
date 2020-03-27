@@ -14,6 +14,7 @@ ARG PCRE_VER=8.44
 ARG OPENSSL_VER=1.1.1e
 ARG OPENRESTY_VER=1.15.8.3
 ARG LUAROCKS_VERSION=3.3.1
+ARG IMAGEMAGICK_VERSION=7.0.10-2
 
 # php相关包
 ARG RE2C_VER=1.3
@@ -79,6 +80,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
 # install development libs dependency
     GeoIP-devel \
     ImageMagick-devel \
+    OpenEXR-devel \
     bison-devel \
     bzip2-devel \
     cyrus-sasl-devel \
@@ -88,13 +90,18 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     gd-devel \
     gdbm-devel \
     gettext-devel \
+    ghostscript-devel \
+    giflib-devel \
     glib2-devel \
     glibc-devel \
     gmp-devel \
     imlib2-devel \
+    jasper-devel \
+    lcms2-devel \
     libX11-devel \
     libXext-devel \
     libXpm-devel \
+    libXt-devel \
     libargon2 \
     libargon2-devel \
     libc-client-devel \
@@ -111,11 +118,14 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     libpng-devel \
     libpqxx-devel \
     librabbitmq-devel \
+    librsvg2-devel \
     libsodium-devel \
     libtidy-devel \
+    libtiff-devel \
     libtool-ltdl-devel \
     libuuid-devel \
     libwebp-devel \
+    libwmf-devel \
     libxml2-devel \
     libxslt-devel \
     libzip-devel \
@@ -125,8 +135,10 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     oniguruma-devel \
     openssl-devel \
     pcre-devel \
+    perl-devel \
     postgresql-devel \
     readline-devel \
+    rpm-build \
     sqlite-devel \
     unixODBC-devel \
     uw-imap-devel \
@@ -148,6 +160,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && wget https://www.openssl.org/source/openssl-${OPENSSL_VER}.tar.gz -O openssl-${OPENSSL_VER}.tar.gz \
     && wget https://openresty.org/download/openresty-${OPENRESTY_VER}.tar.gz -O openresty-${OPENRESTY_VER}.tar.gz \
     && curl -fSL https://luarocks.github.io/luarocks/releases/luarocks-${LUAROCKS_VERSION}.tar.gz -o luarocks-${LUAROCKS_VERSION}.tar.gz \
+    && curl -fSL https://codeload.github.com/ImageMagick/ImageMagick/tar.gz/${IMAGEMAGICK_VERSION} -o ImageMagick-${IMAGEMAGICK_VERSION}.tar.gz \
 
 # download php soft source pack
     && wget https://github.com/skvadrik/re2c/releases/download/${RE2C_VER}/re2c-${RE2C_VER}.tar.xz -O re2c-${RE2C_VER}.tar.xz \
