@@ -134,6 +134,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     mhash-devel \
     net-snmp-devel \
     oniguruma-devel \
+    openssl \
     openssl-devel \
     pcre-devel \
     perl-devel \
