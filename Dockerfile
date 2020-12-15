@@ -163,7 +163,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && wget https://ftp.pcre.org/pub/pcre/pcre-${PCRE_VER}.tar.gz -O pcre-${PCRE_VER}.tar.gz \
     && wget https://www.openssl.org/source/openssl-${OPENSSL_VER}.tar.gz -O openssl-${OPENSSL_VER}.tar.gz \
     && wget https://openresty.org/download/openresty-${OPENRESTY_VER}.tar.gz -O openresty-${OPENRESTY_VER}.tar.gz \
-    && curl -fSL https://luarocks.github.io/luarocks/releases/luarocks-${LUAROCKS_VERSION}.tar.gz -o luarocks-${LUAROCKS_VERSION}.tar.gz \
+    && curl -fSL https://codeload.github.com/luarocks/luarocks/tar.gz/v${LUAROCKS_VERSION} -o luarocks-${LUAROCKS_VERSION}.tar.gz \
     && curl -fSL https://codeload.github.com/ImageMagick/ImageMagick/tar.gz/${IMAGEMAGICK_VERSION} -o ImageMagick-${IMAGEMAGICK_VERSION}.tar.gz \
     && curl -fSL https://codeload.github.com/ImageMagick/ImageMagick6/tar.gz/${IMAGEMAGICK6_VERSION} -o ImageMagick-${IMAGEMAGICK6_VERSION}.tar.gz \
 
