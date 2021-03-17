@@ -8,22 +8,22 @@ ARG WWW_USER=www
 ARG WWW_DIR=/var/www
 
 # nginx相关包
-ARG NGBUILD_VER=0.11.11
+ARG NGBUILD_VER=0.11.13
 ARG ZLIB_VER=1.2.11
 ARG PCRE_VER=8.44
-ARG OPENSSL_VER=1.1.1i
+ARG OPENSSL_VER=1.1.1j
 ARG OPENRESTY_VER=1.19.3.1
 ARG LUAROCKS_VERSION=3.5.0
-ARG IMAGEMAGICK_VERSION=7.0.10-48
-ARG IMAGEMAGICK6_VERSION=6.9.11-48
+ARG IMAGEMAGICK_VERSION=7.0.11-3
+ARG IMAGEMAGICK6_VERSION=6.9.12-3
 
 # php相关包
 ARG RE2C_VER=2.0.3
 ARG LIBICONV_VER=1.16
 ARG LIBZIP_VER=1.7.3
-ARG PHP_VER=7.4.14
+ARG PHP_VER=7.4.16
 ARG PHP_AMQP_VER=1.10.2
-ARG PHP_GRPC_VER=1.34.0
+ARG PHP_GRPC_VER=1.36.0
 ARG PHP_IMAGICK_VER=3.4.4
 ARG PHP_INOTIFY_VER=2.0.0
 ARG PHP_MCRYPT_VER=1.0.4
@@ -32,9 +32,9 @@ ARG PHP_MONGODB_VER=1.9.0
 ARG PHP_MSGPACK_VER=2.1.2
 ARG PHP_NSQ_VER=3.5.0
 ARG PHP_PROTOBUF_VER=3.14.0
-ARG PHP_REDIS_VER=5.3.2
+ARG PHP_REDIS_VER=5.3.3
 ARG PHP_SWOOLE_VER=4.5.11
-ARG PHP_XDEBUG_VER=3.0.1
+ARG PHP_XDEBUG_VER=3.0.3
 ARG PHP_XHPROF_VER=2.2.3
 
 # copy files
@@ -163,6 +163,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && wget https://ftp.pcre.org/pub/pcre/pcre-${PCRE_VER}.tar.gz -O pcre-${PCRE_VER}.tar.gz \
     && wget https://www.openssl.org/source/openssl-${OPENSSL_VER}.tar.gz -O openssl-${OPENSSL_VER}.tar.gz \
     && wget https://openresty.org/download/openresty-${OPENRESTY_VER}.tar.gz -O openresty-${OPENRESTY_VER}.tar.gz \
+    # https://github.com/luarocks/luarocks/releases
     && curl -fSL https://codeload.github.com/luarocks/luarocks/tar.gz/v${LUAROCKS_VERSION} -o luarocks-${LUAROCKS_VERSION}.tar.gz \
     && curl -fSL https://codeload.github.com/ImageMagick/ImageMagick/tar.gz/${IMAGEMAGICK_VERSION} -o ImageMagick-${IMAGEMAGICK_VERSION}.tar.gz \
     && curl -fSL https://codeload.github.com/ImageMagick/ImageMagick6/tar.gz/${IMAGEMAGICK6_VERSION} -o ImageMagick-${IMAGEMAGICK6_VERSION}.tar.gz \
