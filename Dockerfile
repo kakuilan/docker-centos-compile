@@ -152,7 +152,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && yum install -y golang nodejs yarn \
 
 # make www dir add user
-    && echo "199.232.96.133 raw.githubusercontent.com" >> /etc/hosts \
+#    && echo "199.232.96.133 raw.githubusercontent.com" >> /etc/hosts \
     && mkdir -p ${WWW_DIR} \
     && useradd -M -s /sbin/nologin ${WWW_USER} \
     && cd ${SRC_DIR} \
