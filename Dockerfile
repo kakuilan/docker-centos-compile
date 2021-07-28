@@ -196,11 +196,11 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && wget http://pecl.php.net/get/xdebug-${PHP_XDEBUG_VER}.tgz \
     && wget https://github.com/longxinH/xhprof/archive/v${PHP_XHPROF_VER}.tar.gz -O xhprof.${PHP_XHPROF_VER}.tar.gz \
     && wget https://getcomposer.org/installer -O composer-installer.php \
-    && wget https://phar.phpunit.de/phpunit-9.phar -O phpunit \
+    && wget -O phpunit https://phar.phpunit.de/phpunit-9.phar \
 
 # download grpc source
 # https://github.com/grpc/grpc/blob/v1.39.0/src/php/README.md
-    && git clone -b RELEASE_TAG_HERE https://github.com/grpc/grpc \
+    && git clone -b v${PHP_GRPC_VER} https://github.com/grpc/grpc \
     && cd grpc \
     && git submodule update --init \
 
