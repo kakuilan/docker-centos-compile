@@ -8,34 +8,35 @@ ARG WWW_USER=www
 ARG WWW_DIR=/var/www
 
 # nginx相关包
-ARG NGBUILD_VER=0.11.13
+ARG NGBUILD_VER=0.11.14
 ARG ZLIB_VER=1.2.11
-ARG PCRE_VER=8.44
+ARG PCRE_VER=8.45
 ARG OPENSSL_VER=1.1.1k
-ARG OPENRESTY_VER=1.19.3.1
+ARG OPENRESTY_VER=1.19.3.2
 ARG LUAROCKS_VERSION=3.7.0
-ARG IMAGEMAGICK_VERSION=7.0.11-6
-ARG IMAGEMAGICK6_VERSION=6.9.12-8
+ARG IMAGEMAGICK_VERSION=7.1.0-4
+ARG IMAGEMAGICK6_VERSION=6.9.12-19
 
 # php相关包
-ARG RE2C_VER=2.0.3
+ARG RE2C_VER=2.1.1
 ARG LIBICONV_VER=1.16
 ARG LIBZIP_VER=1.7.3
-ARG PHP_VER=7.4.16
+ARG PHP_VER=7.4.21
 ARG PHP_AMQP_VER=1.10.2
-ARG PHP_GRPC_VER=1.37.0
-ARG PHP_IMAGICK_VER=3.4.4
-ARG PHP_INOTIFY_VER=2.0.0
+ARG PHP_GRPC_VER=1.39.0
+ARG PHP_IMAGICK_VER=3.5.1
+ARG PHP_INOTIFY_VER=3.0.0
 ARG PHP_MCRYPT_VER=1.0.4
 ARG PHP_MEMCACHED_VER=3.1.5
-ARG PHP_MONGODB_VER=1.9.1
+ARG PHP_MONGODB_VER=1.10.0
 ARG PHP_MSGPACK_VER=2.1.2
 ARG PHP_NSQ_VER=3.5.0
-ARG PHP_PROTOBUF_VER=3.15.8
+ARG PHP_PROTOBUF_VER=3.17.3
 ARG PHP_REDIS_VER=5.3.4
-ARG PHP_SWOOLE_VER=4.6.6
+ARG PHP_PHALCON_VER=4.1.2
+ARG PHP_SWOOLE_VER=4.7.0
 ARG PHP_XDEBUG_VER=3.0.4
-ARG PHP_XHPROF_VER=2.3.0
+ARG PHP_XHPROF_VER=2.3.3
 
 # copy files
 COPY conf ${SRC_DIR}
@@ -47,7 +48,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && yum install -y curl yum-utils deltarpm epel-release \
     && rpm --import https://mirror.go-repo.io/centos/RPM-GPG-KEY-GO-REPO \
     && yum-config-manager --add-repo https://mirror.go-repo.io/centos/go-repo.repo \
-    && set -o pipefail && curl -sL https://rpm.nodesource.com/setup_12.x | bash - \
+    && set -o pipefail && curl -sL https://rpm.nodesource.com/setup_14.x | bash - \
     && set -o pipefail && curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo \
     && yum repolist \
 
@@ -152,7 +153,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && yum install -y golang nodejs yarn \
 
 # make www dir add user
-#    && echo "199.232.96.133 raw.githubusercontent.com" >> /etc/hosts \
+    && echo "185.199.108.133 raw.githubusercontent.com" >> /etc/hosts \
     && mkdir -p ${WWW_DIR} \
     && useradd -M -s /sbin/nologin ${WWW_USER} \
     && cd ${SRC_DIR} \
@@ -170,6 +171,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
 
 # download php soft source pack
     && wget https://github.com/skvadrik/re2c/releases/download/${RE2C_VER}/re2c-${RE2C_VER}.tar.xz -O re2c-${RE2C_VER}.tar.xz \
+    # http://www.gnu.org/software/libiconv/#downloading
     && wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-${LIBICONV_VER}.tar.gz \
     && wget https://libzip.org/download/libzip-${LIBZIP_VER}.tar.gz \
     && wget http://hk1.php.net/get/php-${PHP_VER}.tar.gz/from/this/mirror -O php-${PHP_VER}.tar.gz \
@@ -184,11 +186,18 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && wget https://pecl.php.net/get/nsq-${PHP_NSQ_VER}.tgz \
     && wget http://pecl.php.net/get/protobuf-${PHP_PROTOBUF_VER}.tgz \
     && wget https://pecl.php.net/get/redis-${PHP_REDIS_VER}.tgz \
+    && wget https://pecl.php.net/get/phalcon-${PHP_PHALCON_VER}.tgz \
     && wget https://pecl.php.net/get/swoole-${PHP_SWOOLE_VER}.tgz \
     && wget http://pecl.php.net/get/xdebug-${PHP_XDEBUG_VER}.tgz \
     && wget https://github.com/longxinH/xhprof/archive/v${PHP_XHPROF_VER}.tar.gz -O xhprof.${PHP_XHPROF_VER}.tar.gz \
     && wget https://getcomposer.org/installer -O composer-installer.php \
-    && wget https://phar.phpunit.de/phpunit-8.phar -O phpunit \
+    && wget https://phar.phpunit.de/phpunit-9.phar -O phpunit \
+
+# download grpc source
+# https://github.com/grpc/grpc/blob/v1.39.0/src/php/README.md
+    && git clone -b RELEASE_TAG_HERE https://github.com/grpc/grpc
+    && cd grpc
+    && git submodule update --init
 
 # clear cache
     && yum clean all \
