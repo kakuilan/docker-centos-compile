@@ -38,6 +38,10 @@ ARG PHP_SWOOLE_VER=4.7.0
 ARG PHP_XDEBUG_VER=3.0.4
 ARG PHP_XHPROF_VER=2.3.3
 
+# golang
+ARG GO111MODULE=on
+ARG GOPROXY=https://mirrors.aliyun.com/goproxy/
+
 # copy files
 COPY conf ${SRC_DIR}
 
