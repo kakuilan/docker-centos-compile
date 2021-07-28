@@ -195,9 +195,9 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
 
 # download grpc source
 # https://github.com/grpc/grpc/blob/v1.39.0/src/php/README.md
-    && git clone -b RELEASE_TAG_HERE https://github.com/grpc/grpc
-    && cd grpc
-    && git submodule update --init
+    && git clone -b RELEASE_TAG_HERE https://github.com/grpc/grpc \
+    && cd grpc \
+    && git submodule update --init \
 
 # clear cache
     && yum clean all \
