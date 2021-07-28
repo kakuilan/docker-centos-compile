@@ -40,7 +40,7 @@ ARG PHP_XHPROF_VER=2.3.3
 
 # golang
 ARG GO111MODULE=on
-ARG GOPROXY=https://mirrors.aliyun.com/goproxy/
+ARG GOPROXY=https://goproxy.cn
 
 # copy files
 COPY conf ${SRC_DIR}
