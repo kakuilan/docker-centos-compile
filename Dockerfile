@@ -155,7 +155,10 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
 
 # install packaging tools
     && yum install -y golang nodejs yarn \
-
+# set git conf
+    && git config --global http.postBuffer 1048576000 \
+    && git config --global http.lowSpeedLimit 0 \
+    && git config --global http.lowSpeedTime 999999 \
 # make www dir add user
     && echo "185.199.108.133 raw.githubusercontent.com" >> /etc/hosts \
     && mkdir -p ${WWW_DIR} \
