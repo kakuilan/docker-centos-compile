@@ -21,7 +21,7 @@ ARG IMAGEMAGICK6_VERSION=6.9.12-19
 ARG RE2C_VER=2.1.1
 ARG LIBICONV_VER=1.16
 ARG LIBZIP_VER=1.7.3
-ARG PHP_VER=7.4.21
+ARG PHP_VER=7.4.22
 ARG PHP_AMQP_VER=1.10.2
 ARG PHP_GRPC_VER=1.39.0
 ARG PHP_IMAGICK_VER=3.5.1
@@ -49,7 +49,7 @@ COPY conf ${SRC_DIR}
 RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
 
 # update yum repo
-    && yum install -y curl yum-utils deltarpm epel-release \
+    && yum install -y curl yum-utils deltarpm epel-release centos-release-scl \
     && rpm --import https://mirror.go-repo.io/centos/RPM-GPG-KEY-GO-REPO \
     && yum-config-manager --add-repo https://mirror.go-repo.io/centos/go-repo.repo \
     && set -o pipefail && curl -sL https://rpm.nodesource.com/setup_14.x | bash - \
@@ -81,6 +81,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     tree \
     tzdata \
     unzip \
+    unar \
     wget \
     which \
 
@@ -153,14 +154,14 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     xmlrpc-c-devel \
     zlib-devel \
 
-# install packaging tools
-    && yum install -y golang nodejs yarn \
+# install packaging tools & upgrade gcc
+    && yum install -y golang nodejs yarn devtoolset-8-gcc* \
 # set git conf
     && git config --global http.postBuffer 1048576000 \
     && git config --global http.lowSpeedLimit 0 \
     && git config --global http.lowSpeedTime 999999 \
 # make www dir add user
-    && echo "185.199.108.133 raw.githubusercontent.com" >> /etc/hosts \
+    #&& echo "185.199.108.133 raw.githubusercontent.com" >> /etc/hosts \
     && mkdir -p ${WWW_DIR} \
     && useradd -M -s /sbin/nologin ${WWW_USER} \
     && cd ${SRC_DIR} \
@@ -200,12 +201,6 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && wget https://github.com/longxinH/xhprof/archive/v${PHP_XHPROF_VER}.tar.gz -O xhprof.${PHP_XHPROF_VER}.tar.gz \
     && wget https://getcomposer.org/installer -O composer-installer.php \
     && wget -O phpunit https://phar.phpunit.de/phpunit-9.phar \
-
-# download grpc source
-# https://github.com/grpc/grpc/blob/v1.39.0/src/php/README.md
-    #&& git clone -b v1.39.x https://github.com/grpc/grpc \
-    #&& cd grpc \
-    #&& git submodule update --init \
 
 # clear cache
     && yum clean all \
