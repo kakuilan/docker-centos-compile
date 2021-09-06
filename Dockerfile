@@ -11,17 +11,18 @@ ARG WWW_DIR=/var/www
 ARG NGBUILD_VER=0.11.14
 ARG ZLIB_VER=1.2.11
 ARG PCRE_VER=8.45
-ARG OPENSSL_VER=1.1.1k
-ARG OPENRESTY_VER=1.19.3.2
+ARG OPENSSL_VER=1.1.1l
+ARG OPENRESTY_VER=1.19.9.1
 ARG LUAROCKS_VERSION=3.7.0
-ARG IMAGEMAGICK_VERSION=7.1.0-4
-ARG IMAGEMAGICK6_VERSION=6.9.12-19
+ARG IMAGEMAGICK_VERSION=7.1.0-6
+ARG IMAGEMAGICK6_VERSION=6.9.12-21
 
 # php相关包
 ARG RE2C_VER=2.1.1
 ARG LIBICONV_VER=1.16
 ARG LIBZIP_VER=1.7.3
-ARG PHP_VER=7.4.22
+ARG PHP_VER=7.4.23
+ARG PHP_8VER=8.0.10
 ARG PHP_AMQP_VER=1.10.2
 ARG PHP_GRPC_VER=1.39.0
 ARG PHP_IMAGICK_VER=3.5.1
@@ -34,9 +35,9 @@ ARG PHP_NSQ_VER=3.5.0
 ARG PHP_PROTOBUF_VER=3.17.3
 ARG PHP_REDIS_VER=5.3.4
 ARG PHP_PHALCON_VER=4.1.2
-ARG PHP_SWOOLE_VER=4.7.0
+ARG PHP_SWOOLE_VER=4.7.1
 ARG PHP_XDEBUG_VER=3.0.4
-ARG PHP_XHPROF_VER=2.3.3
+ARG PHP_XHPROF_VER=2.3.5
 
 # golang
 ARG GO111MODULE=on
@@ -184,6 +185,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-${LIBICONV_VER}.tar.gz \
     && wget https://libzip.org/download/libzip-${LIBZIP_VER}.tar.gz \
     && wget http://hk1.php.net/get/php-${PHP_VER}.tar.gz/from/this/mirror -O php-${PHP_VER}.tar.gz \
+    && wget http://hk1.php.net/get/php-${PHP_8VER}.tar.gz/from/this/mirror -O php-${PHP_8VER}.tar.gz \
     && wget http://pecl.php.net/get/amqp-${PHP_AMQP_VER}.tgz \
     && wget http://pecl.php.net/get/grpc-${PHP_GRPC_VER}.tgz \
     && wget https://pecl.php.net/get/imagick-${PHP_IMAGICK_VER}.tgz \
