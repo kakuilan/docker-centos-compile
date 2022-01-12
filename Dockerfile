@@ -45,6 +45,7 @@ ARG GOPROXY=https://goproxy.cn
 
 # copy files
 COPY conf ${SRC_DIR}
+COPY files ${SRC_DIR}
 
 # copy conf
 RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
@@ -170,8 +171,8 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
 # download nginx soft source pack
     #&& wget https://github.com/cubicdaiya/nginx-build/releases/download/v${NGBUILD_VER}/nginx-build-linux-amd64-${NGBUILD_VER}.tar.gz -O nginx-build-linux-amd64-${NGBUILD_VER}.tar.gz \
     && go get -u github.com/cubicdaiya/nginx-build \
-    && wget https://zlib.net/fossils/zlib-${ZLIB_VER}.tar.gz -O zlib-${ZLIB_VER}.tar.gz \
-    && wget https://ftp.pcre.org/pub/pcre/pcre-${PCRE_VER}.tar.gz -O pcre-${PCRE_VER}.tar.gz \
+    #&& wget https://zlib.net/fossils/zlib-${ZLIB_VER}.tar.gz -O zlib-${ZLIB_VER}.tar.gz \
+    #&& wget https://ftp.pcre.org/pub/pcre/pcre-${PCRE_VER}.tar.gz -O pcre-${PCRE_VER}.tar.gz \
     && wget https://www.openssl.org/source/openssl-${OPENSSL_VER}.tar.gz -O openssl-${OPENSSL_VER}.tar.gz \
     && wget https://openresty.org/download/openresty-${OPENRESTY_VER}.tar.gz -O openresty-${OPENRESTY_VER}.tar.gz \
     # https://github.com/luarocks/luarocks/releases

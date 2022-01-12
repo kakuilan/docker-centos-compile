@@ -9,7 +9,7 @@ sudo docker build --add-host raw.githubusercontent.com:185.199.108.133 --add-hos
 
 ### 发布镜像
 ```shell
-sudo docker tag mycent:latest kakuilan/centos-compile:0.0.2
+sudo docker tag mycent:latest kakuilan/centos-compile:0.0.4
 sudo docker login
-sudo docker push kakuilan/centos-compile:0.0.2
+sudo docker push kakuilan/centos-compile:0.0.4
 ```
