@@ -181,7 +181,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && curl -fSL https://codeload.github.com/ImageMagick/ImageMagick6/tar.gz/${IMAGEMAGICK6_VERSION} -o ImageMagick-${IMAGEMAGICK6_VERSION}.tar.gz \
 
 # download php soft source pack
-    && wget https://github.com/skvadrik/re2c/releases/download/${RE2C_VER}/re2c-${RE2C_VER}.tar.xz -O re2c-${RE2C_VER}.tar.xz --no-check-certificate \
+    #&& wget https://github.com/skvadrik/re2c/releases/download/${RE2C_VER}/re2c-${RE2C_VER}.tar.xz -O re2c-${RE2C_VER}.tar.xz --no-check-certificate \
     # http://www.gnu.org/software/libiconv/#downloading
     && wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-${LIBICONV_VER}.tar.gz \
     && wget https://libzip.org/download/libzip-${LIBZIP_VER}.tar.gz \
