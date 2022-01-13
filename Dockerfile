@@ -201,7 +201,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     && wget https://pecl.php.net/get/phalcon-${PHP_PHALCON_VER}.tgz \
     && wget https://pecl.php.net/get/swoole-${PHP_SWOOLE_VER}.tgz \
     && wget http://pecl.php.net/get/xdebug-${PHP_XDEBUG_VER}.tgz \
-    && wget https://github.com/longxinH/xhprof/archive/v${PHP_XHPROF_VER}.tar.gz -O xhprof.${PHP_XHPROF_VER}.tar.gz \
+    #&& wget https://github.com/longxinH/xhprof/archive/v${PHP_XHPROF_VER}.tar.gz -O xhprof.${PHP_XHPROF_VER}.tar.gz \
     && wget https://getcomposer.org/installer -O composer-installer.php \
     && wget -O phpunit https://phar.phpunit.de/phpunit-9.phar \
 
