@@ -184,7 +184,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     #&& wget https://github.com/skvadrik/re2c/releases/download/${RE2C_VER}/re2c-${RE2C_VER}.tar.xz -O re2c-${RE2C_VER}.tar.xz --no-check-certificate \
     # http://www.gnu.org/software/libiconv/#downloading
     #&& wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-${LIBICONV_VER}.tar.gz \
-    && wget https://libzip.org/download/libzip-${LIBZIP_VER}.tar.gz \
+    #&& wget https://libzip.org/download/libzip-${LIBZIP_VER}.tar.gz \
     && wget http://hk1.php.net/get/php-${PHP_VER}.tar.gz/from/this/mirror -O php-${PHP_VER}.tar.gz \
     && wget http://hk1.php.net/get/php-${PHP_8VER}.tar.gz/from/this/mirror -O php-${PHP_8VER}.tar.gz \
     && wget http://pecl.php.net/get/amqp-${PHP_AMQP_VER}.tgz \
