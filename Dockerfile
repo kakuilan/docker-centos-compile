@@ -12,7 +12,7 @@ ARG NGBUILD_VER=0.11.18
 ARG ZLIB_VER=1.2.11
 ARG PCRE_VER=8.45
 ARG OPENSSL_VER=1.1.1m
-ARG OPENRESTY_VER=1.24.1.1rc1
+ARG OPENRESTY_VER=1.21.4.1rc1
 ARG LUAROCKS_VERSION=3.8.0
 ARG IMAGEMAGICK_VERSION=7.1.0-19
 ARG IMAGEMAGICK6_VERSION=6.9.12-34
@@ -157,7 +157,7 @@ RUN \cp -f /usr/local/src/mercurial.repo /etc/yum.repos.d/ \
     zlib-devel \
 
 # install packaging tools & upgrade gcc
-    && yum install -y golang nodejs yarn devtoolset-8-gcc* \
+    && yum install -y golang devtoolset-8-gcc* \
 # set git conf
     && git config --global http.postBuffer 1048576000 \
     && git config --global http.lowSpeedLimit 0 \
